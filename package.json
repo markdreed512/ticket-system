@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ./bugtracker/frontend/src/index.js --output ./bugtracker/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --watch ./bugtracker/frontend/src/index.js --output ./bugtracker/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./bugtracker/frontend/src/index.js --output ./bugtracker/frontend/static/frontend/main.js"
   },
   "keywords": [],
