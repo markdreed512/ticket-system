@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getTickets } from "../../actions/tickets";
+import { getTickets, deleteTicket } from "../../actions/tickets";
 
 export class Tickets extends Component {
   static propTypes = {
@@ -34,7 +34,7 @@ export class Tickets extends Component {
                 <td>{ticket.email}</td>
                 <td>{ticket.message}</td>
                 <td>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <button onClick={this.props.deleteTicket.bind(this, ticket.id)} className="btn btn-danger btn-sm">Delete</button>
                 </td>
               </tr>
             ))}
@@ -49,4 +49,4 @@ const mapStateToProps = (state) => ({
   tickets: state.tickets.tickets,
 });
 
-export default connect(mapStateToProps, { getTickets })(Tickets);
+export default connect(mapStateToProps, { getTickets, deleteTicket })(Tickets);
