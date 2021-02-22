@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_TICKETS, DELETE_TICKET } from "./types";
+import { GET_TICKETS, DELETE_TICKET, ADD_TICKET } from "./types";
 
 export const getTickets = () => (dispatch) => {
   axios
@@ -15,13 +15,22 @@ export const getTickets = () => (dispatch) => {
 };
 
 export const deleteTicket = (id) => (dispatch) => {
-    axios
-      .get(`/api/tickets/${id}/`)
-      .then((res) => {
-        dispatch({
-          type: DELETE_TICKET,
-          payload: id,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  axios
+    .delete(`/api/tickets/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: DELETE_TICKET,
+        payload: id,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const addTicket = (ticket) => (dispatch) => {
+  axios.post("/api/tickets/", ticket).then((res) => {
+    dispatch({
+      type: ADD_TICKET,
+      payload: res.data,
+    });
+  });
+};

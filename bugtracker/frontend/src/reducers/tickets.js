@@ -1,4 +1,4 @@
-import { DELETE_TICKET, GET_TICKETS } from "../actions/types.js";
+import { DELETE_TICKET, GET_TICKETS, ADD_TICKET } from "../actions/types.js";
 
 const initialState = {
   tickets: [],
@@ -12,12 +12,17 @@ export default function (state = initialState, action) {
         tickets: action.payload,
       };
     case DELETE_TICKET:
+      return {
+        ...state,
+        // filters only items that are not id in action payload
+        tickets: state.tickets.filter((ticket) => {
+          return ticket.id !== action.payload;
+        }),
+      };
+      case ADD_TICKET:
         return{
             ...state,
-            // filters only items that are not id in action payload
-            tickets: state.tickets.filter(ticket => {
-                return ticket.id !== action.payload 
-            })
+            tickets: [...state.tickets, action.payload]
         }
     default:
       return state;

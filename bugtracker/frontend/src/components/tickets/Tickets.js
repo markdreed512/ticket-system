@@ -6,6 +6,8 @@ import { getTickets, deleteTicket } from "../../actions/tickets";
 export class Tickets extends Component {
   static propTypes = {
     tickets: PropTypes.array.isRequired,
+    getTickets: PropTypes.func.isRequired,
+    deleteTicket: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -34,7 +36,12 @@ export class Tickets extends Component {
                 <td>{ticket.email}</td>
                 <td>{ticket.message}</td>
                 <td>
-                  <button onClick={this.props.deleteTicket.bind(this, ticket.id)} className="btn btn-danger btn-sm">Delete</button>
+                  <button
+                    onClick={this.props.deleteTicket.bind(this, ticket.id)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
