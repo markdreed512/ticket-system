@@ -27,7 +27,7 @@ export class Form extends Component {
         <h2>Add Ticket</h2>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Name</label>
+            <label>Name...</label>
             <input
               type="text"
               className="form-control"
@@ -64,5 +64,4 @@ export class Form extends Component {
     );
   }
 }
-
 export default connect(null, { addTicket })(Form);

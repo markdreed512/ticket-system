@@ -27,7 +27,8 @@ export const deleteTicket = (id) => (dispatch) => {
 };
 
 export const addTicket = (ticket) => (dispatch) => {
-  axios.post("/api/tickets/", ticket).then((res) => {
+  axios.post("/api/tickets/",
+  ).then((res) => {
     dispatch({
       type: ADD_TICKET,
       payload: res.data,

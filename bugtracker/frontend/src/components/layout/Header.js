@@ -3,6 +3,7 @@ import React, { Component } from "react";
 export class Header extends Component {
   render() {
     return (
+   
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <div className="container-fluid">
           <button
@@ -18,7 +19,7 @@ export class Header extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a className="navbar-brand" href="#">
-              Ticket Tracker!!
+              Ticket Tracker
             </a>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
