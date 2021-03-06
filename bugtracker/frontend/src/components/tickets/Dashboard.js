@@ -1,12 +1,19 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import Tickets from "./Tickets";
+import TicketsContext from './TicketsContext'
+
 function Dashboard() {
+
+  const [tickets, setTickets] = useState([])
+
   return (
-    <Fragment>
-      <Form />
-      <Tickets />
-    </Fragment>
+    <>
+      <TicketsContext.Provider value={[tickets, setTickets]}>
+        <Form />
+        <Tickets />
+      </TicketsContext.Provider>
+    </>
   );
 }
 

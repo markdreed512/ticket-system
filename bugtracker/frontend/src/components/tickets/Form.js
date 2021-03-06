@@ -1,38 +1,38 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux'
+import React, { useState, useContext } from "react";
 import PropTypes from 'prop-types'
-import { addTicket } from '../../actions/tickets' 
+import TicketsContext from './TicketsContext'
 
-export class Form extends Component {
-  state = {
-    name: "",
-    email: "",
-    message: "",
-  };
-  static propTypes = {
-    addTicket: PropTypes.func.isRequired
-  }
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+const Form = (props) => {
+  const [tickets, setTickets] = useContext(TicketsContext)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
-  onSubmit = (e) => {
+  const onNameChange = (e) => setName(e.target.value);
+  const onEmailChange = (e) => setEmail(e.target.value);
+  const onMessageChange = (e) => setMessage(e.target.value);
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const ticket = { name, email, message }
-    this.props.addTicket(ticket)
+    setTickets([...tickets,{
+      name,
+      email,
+      message
+    }])
+    console.log(formData)
   }
-  render() {
-    const { name, email, message } = this.state;
+  
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Ticket</h2>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="form-group">
-            <label>Name...</label>
+            <label>Name</label>
             <input
               type="text"
               className="form-control"
               name="name"
-              onChange={this.onChange}
+              onChange={onNameChange}
               value={name}
             />
           </div>
@@ -42,7 +42,7 @@ export class Form extends Component {
               type="text"
               className="form-control"
               name="email"
-              onChange={this.onChange}
+              onChange={onEmailChange}
               value={email}
             />
           </div>
@@ -52,7 +52,7 @@ export class Form extends Component {
               type="text"
               className="form-control"
               name="message"
-              onChange={this.onChange}
+              onChange={onMessageChange}
               value={message}
             />
           </div>
@@ -62,6 +62,6 @@ export class Form extends Component {
         </form>
       </div>
     );
-  }
+  
 }
-export default connect(null, { addTicket })(Form);
+export default Form;

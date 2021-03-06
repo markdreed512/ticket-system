@@ -29,7 +29,7 @@ class App extends Component {
               <Dashboard />
             </div>
           </Fragment>
-           </AlertProvider>
+        </AlertProvider>
       </Provider>
     );
   }

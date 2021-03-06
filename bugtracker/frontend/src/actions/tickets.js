@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_TICKETS, DELETE_TICKET, ADD_TICKET } from "./types";
+import { GET_TICKETS, DELETE_TICKET, ADD_TICKET, GET_ERRORS } from "./types";
 
 export const getTickets = () => (dispatch) => {
   axios
@@ -33,5 +33,16 @@ export const addTicket = (ticket) => (dispatch) => {
       type: ADD_TICKET,
       payload: res.data,
     });
-  });
+  })
+  .catch((err) => {
+    const errors = {
+      msg: err.response.data,
+      status: err.response.status
+    }
+    dispatch({
+      type: GET_ERRORS,
+      payload: errors
+    })
+  })
 };
+
